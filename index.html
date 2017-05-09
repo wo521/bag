@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width:600px;
+            height:600px;
+            margin:0 auto;
+            border: 1px solid darksalmon;
+        }
+        #box p{
+            width:600px;
+            height:50px;
+            margin:0;
+            text-align: center;
+            background-color: gainsboro;
+        }
+        .on{
+            background-color: red;
+        }
+        #box p a{
+            width:200px;
+            height:50px;
+            float: left;
+            color:black;
+            line-height:50px;
+            font-size:20px;
+            text-decoration: none;
+        }
+        #box div{
+            width:600px;
+            height:550px;
+            text-align: center;
+            line-height:550px;
+            font-size: 50px;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var box=document.getElementById("box");
+            var aDiv=box.getElementsByTagName("div");
+            var oBtn=box.getElementsByTagName("a");
+
+            for(var i=0; i<3; i++ ){
+                oBtn[i].index=i;
+                oBtn[i].onmouseover=function(){
+                    //alert( this.a) 弹出undifien;
+                    for(var i=0; i<3; i++ ){
+//                       先清空所有按钮的className;
+                        oBtn[i].className='';
+                    }
+//                   再给当期按钮加选中状态
+                    this.className='on';
+                    //先隐藏所有的div；
+                    for(var i=0; i<3; i++){
+                        aDiv[i].style.display='none';
+                    }
+                    //aDiv[?]--->0,1,2;
+                    aDiv[this.index].style.display='block';
+                }
+                /*自定义属性：在ie78可以获取，高版本浏览器获取不到；
+                 高版本浏览器加载顺序；
+                 1先加载系统自带属性
+                 2过滤自定义属性
+                 3加载js*/
+                /*索引
+                 需要把两个不相关的东西建立起关联的时候*/
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <p>
+        <a href="javascript:;" class="on" index="0">公告</a>
+        <a href="javascript:;" index="1">规则</a>
+        <a href="javascript:;" index="2">论坛</a>
+    </p>
+
+    <div style="display:block;">公告</div>
+    <div>规则</div>
+    <div>论坛</div>
+</div>
+</body>
+</html>
